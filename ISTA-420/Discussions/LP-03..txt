@@ -1,0 +1,29 @@
+
+Lesson Plan 03, ISTA-420
+Chapter 2, T-SQL Fundamentals
+August 9, 2017
+
+
+1. List the order of execution of a SQL query.
+   FROM, WHERE, GROUP BY, HAVING, SELECT, ORDER BY.
+2. What does the from clause do?
+   Its were you choose the table to pull from.
+3. What does the where clause do?
+   Filters the results.
+4. What does the group by clause do?
+  Arrange rows in the way you specify.
+5. What does the having clause do?
+   Filters the groups.
+6. What does the select clause do?
+  You control what you want to do.
+7. What does the distinct keyword do?
+   Does not allow duplicates.
+8. What does the order by clause do?
+   Sets up rows for presentation.
+9. What does the limit clause do? This is not in the book.
+   Shows results up to the number you deem.
+10.What does top clause do?
+   Limits but also shows percentages.
+11.What do the offset,fetch clauses do?
+   You can use offset to not get the top number of results, then use fetch 
+to get the next specified amount.

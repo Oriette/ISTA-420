@@ -1,0 +1,50 @@
+Lesson Plan 09, ISTA-420
+Chapter 5, T-SQL Fundamentals
+August 21, 2017
+
+
+
+1. What does a set operator do?  
+   They combine rows from two query result sets.
+
+2.What are the general requirements of a set operator?  
+  Input Query1
+  <set_operator>
+  Input Query2
+  [ORDER BY ...]; 
+ 
+3.What is a Venn Diagram? This is not in the book.  
+  A Venn diagram is a diagram that shows all possible logical relations
+  between a finite collection of different sets.
+
+4.Draw a Venn Diagram of the UNION operator. What does it do?  
+  The UNION operator unifies the results of two input queries. 
+
+5.Draw a Venn Diagram of the UNION ALL operator. What does it do?  
+  The UNION ALL operator unifies the two input query results without attempting
+  to remove duplicates from the result. 
+
+6.Draw a Venn Diagram of the INTERSECT operator. What does it do?  
+  The INTERSECT operator returns only the rows that are common to the results of the two input queries.
+
+7.If SQL Server supported the INTERSECT ALL operator, what would it do?
+  Code sample
+  SELECT ProductID FROM Product INTERSECT
+  SELECT ProductID FROM WorkOrder;
+  SELECT ProductID FROM Product EXCEPT
+  SELECT ProductID FROM WorkOrder;
+
+8.Draw a Venn Diagram of the EXCEPT operator. What does it do?  
+  The EXCEPT operator returns only distinct rows that appear in the first set but 
+  not the second. In other words, a row is returned once in the output as long as it 
+  appears at least once in the first input multiset and zero times in the second.
+
+9.If SQL Server supported the EXCEPT ALL operator, what would it do?
+  Returns distinct rows by comparing the results of two queries. 
+  EXCEPT returns distinct rows from the left input query that aren’t output by the right input query. 
+  INTERSECT returns distinct rows that are output by both the left and right input queries operator.
+
+10.What is the precedence of the set operators?  
+   The precedence of the set operators is the INTERSECT operator precedes UNION and 
+   EXCEPT, and UNION and EXCEPT are evaluated in order of appearance. Using the ALL variant 
+   doesn’t change the precedence.

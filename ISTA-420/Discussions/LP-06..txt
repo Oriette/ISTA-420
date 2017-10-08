@@ -1,0 +1,70 @@
+Lesson Plan 06, ISTA-420
+Chapter 3, T-SQL Fundamentals
+August 15, 2017
+
+
+1. In your own words, what is a subquery?
+   A query inside another query.
+
+2. In your own words, what is a self contained subquery?
+   Is self dependant from another query.
+
+3. In your own words, what is a correlated subquery?
+   Depends on tables within other queries.
+
+4. Give an example of a subquery that returns a single value. When would you use this kind of subquery?
+   "select order id from sales.order avg"
+  
+  When you only want one result.
+(Recieved Help From Xavier)
+5. Give an example of a subquery that returns multiple values. When would you use this kind of subquery?
+   `select firstname + ' ' + lastname + ' had no sales in May, 2016.' 
+   from hr.Employees
+   where empid NOT IN
+   (select empidfrom sales.orders where orderdate like '2017-06%');`
+   "To filter results."
+(Recieved Help From Xavier)
+6. Give an example of a subquery that returns table values. When would you use this kind of subquery?
+   select OrderYear, count(distinct custid) as NumCust
+   from (select year(orderdate) as OrderYear, custid
+   from sales.orders) as x
+   group by OrderYear;
+(Recieved Help From Xavier)
+7. What does the exists predicate do? Give an example.
+ -  select firstname + ' ' + lastname + ' had sales in May, 2016.' as award
+  from hr.Employees e
+  where exists
+  (select empid
+  from sales.orders o
+  where e.empid=o.empid
+  and orderdate like '2016-05%');
+  
+  Filters out ones that do not have the indicated value.
+(Recieved Help From Xavier)
+8. What happens if we use the not operator before a predicate? Give an example.
+   select firstname + ' ' + lastname + ' had no sales in May, 2016.' as counsel
+  from hr.Employees e
+  where not exists
+  (select empid
+  from sales.orders o
+  where e.empid=o.empid
+  and orderdate like '2016-05%');
+  
+  It does the exact opposite of just having exists.
+(Recieved Help From Xavier)
+9. When you use _exists_ or not exists with respect to a row in a database, dois
+   it return two or three values? Explain your anser.
+   Two. It is either true or false.
+(Recieved Help From Xavier)
+10. How would you write a subquery to calculate aggregates? For example, you want to 
+    calculate yearly sales of a product, and you also want to keep a running sum of total sales. 
+    Explain how you would use a subquery to do this.
+    
+  select orderyear as Year, qty as Sales,
+  (select sum(view2.qty)
+  from Sales.OrderTotalsByYear as view2
+  where view2.orderyear <= view1.orderyear) as RunningSales
+  from Sales.OrderTotalsByYear as view1
+  order by orderyear;
+  
+  Query one to display the yearly sales for each year and a second for the sum of total sales.
